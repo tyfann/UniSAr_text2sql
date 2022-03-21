@@ -7,6 +7,11 @@ This paper introduces [UniSAr](https://arxiv.org/pdf/2203.07781.pdf).
 
 [Fine-tuned BART model](https://huggingface.co/dreamerdeo/mark-bart/tree/main)  -> `./models/spider_sl`
 
+(Please download this model by `git-lfs` to avoid the [issue](https://github.com/DreamerDeo/UniSAr_text2sql/issues/1).)
+```angular2html
+git lfs install
+git clone https://huggingface.co/dreamerdeo/mark-bart
+```
 
 
 ## Main dependencies
@@ -15,6 +20,12 @@ This paper introduces [UniSAr](https://arxiv.org/pdf/2203.07781.pdf).
 * `pip install -r requirements.txt`
 * fairseq is going though changing without backward compatibility. Install `fairseq` from source and use [this](https://github.com/nicola-decao/fairseq/tree/fixing_prefix_allowed_tokens_fn) commit for reproducibilty. See [here](https://github.com/pytorch/fairseq/pull/3276) for the current PR that should fix `fairseq/master`.
 
+(Since the constrained decoding is implemented base on [GENRE](https://github.com/facebookresearch/GENRE), please install the specific fairseq version as README suggested.)
+```
+git clone git@github.com:nicola-decao/fairseq.git
+cd fairseq
+pip install --editable ./
+```
 
 ## Evaluation Pipeline
 Step 1: Preprocess via adding schema-linking and value-linking tag.
