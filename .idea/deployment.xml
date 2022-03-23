@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="node@127.0.0.1:6668 unisar" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="node@127.0.0.1:6668 unisar">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/data" />
+            <excludedPath path="/models" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
