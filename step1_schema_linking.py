@@ -429,8 +429,8 @@ def read_spider_split(dataset_path, table_path, database_path):
 
 
 def preprocess_dataset(dataset, dataset_dir, output_dir, table_path, database_path):
-    # for session in ['train', 'dev']:
-    for session in ['dev']:
+    for session in ['train', 'dev']:
+    # for session in ['dev']:
         dataset_path = os.path.join(dataset_dir, f'{session}.json')
         interaction_list = read_spider_split(dataset_path, table_path, database_path)
         write_interaction(interaction_list, session, output_dir)
@@ -444,7 +444,7 @@ def preprocess(dataset, dataset_dir, table_path, database_path, output_dir):
         os.mkdir(output_dir)
 
     # read schema
-    print('Reading spider database schema file')
+    print('Reading csgsql database schema file')
     schema_tokens, column_names, database_schemas = read_database_schema(table_path)
     print('total number of schema_tokens / databases:', len(schema_tokens))
     output_table_path = os.path.join(output_dir, 'tables.json')
@@ -459,7 +459,7 @@ def preprocess(dataset, dataset_dir, table_path, database_path, output_dir):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", choices=('spider', 'sparc', 'cosql', 'csgsql'), default='spider')
+    parser.add_argument("--dataset", choices=('spider', 'sparc', 'cosql', 'csgsql'), default='csgsql')
     args = parser.parse_args()
 
     dataset = args.dataset

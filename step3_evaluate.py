@@ -14,11 +14,11 @@ from semparse.sql.spider import load_original_schemas, load_tables
 from semparse.worlds.evaluate_spider import evaluate as evaluate_sql
 from step1_schema_linking import read_database_schema
 
-database_dir='./data/spider/database'
-database_schema_filename = './data/spider/tables.json'
+database_dir='./data/csgsql/database'
+database_schema_filename = './data/csgsql/tables.json'
 schema_tokens, column_names, database_schemas = read_database_schema(database_schema_filename)
 
-with open(f'./data/spider/dev.json', 'r', encoding='utf-8') as f:
+with open(f'./data/csgsql/dev.json', 'r', encoding='utf-8') as f:
     item = json.load(f)
 sql_to_db = []
 for i in item:
@@ -207,7 +207,7 @@ def predict_and_evaluate(model_path, dataset_path, constrain):
             data = extract_structure_data(file_content)
 
     correct_arr, correct_num, total = evaluate(data)
-    with open('./eval/spider_eval.txt', "w", encoding="utf8") as eval_file:
+    with open('./eval/csgsql_eval.txt', "w", encoding="utf8") as eval_file:
         for example, correct in zip(data, correct_arr):
             eval_file.write(str(correct) + "\n" + "\n".join(
                 [example[0], "db: " + example[-1], example[1], "gold: " + example[2], "pred: " + example[3]]) + "\n\n")
@@ -326,8 +326,8 @@ def decode_without_constrain( model_path, dataset_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", default='./models/spider_sl')
-    parser.add_argument("--dataset_path", default='./dataset_post/spider_sl')
+    parser.add_argument("--model_path", default='./models/csgsql_sl')
+    parser.add_argument("--dataset_path", default='./dataset_post/csgsql_sl')
     parser.add_argument("--constrain", action='store_true')
     args = parser.parse_args()
 

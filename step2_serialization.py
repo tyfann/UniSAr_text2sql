@@ -124,7 +124,7 @@ def build_schema_linking_data(schema, question, item, turn_id, linking_type):
 def extract_input_and_output(example_lines, linking_type):
     inputs = []
     outputs = []
-    database_schema_filename = './data/spider/tables.json'
+    database_schema_filename = './data/csgsql/tables.json'
 
 
     schema_tokens, column_names, database_schemas = read_database_schema(database_schema_filename)
@@ -159,16 +159,16 @@ def read_dataflow_dataset(file_path, out_folder, session, linking_type):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--sl_dataset_path", default='./data/spider_schema_linking_tag')
-    parser.add_argument("--output_path", default='./dataset_post/spider_sl')
+    parser.add_argument("--sl_dataset_path", default='./data/csgsql_schema_linking_tag')
+    parser.add_argument("--output_path", default='./dataset_post/csgsql_sl')
     parser.add_argument("--linking_type", default='default')
     args = parser.parse_args()
 
-    # for session in ["train", "dev"]:
-    for session in ["dev"]:
+    for session in ["train", "dev"]:
+    # for session in ["dev"]:
         file_path = os.path.join(args.sl_dataset_path, "{}.json".format(session))
         out_folder = args.output_path
         if not os.path.exists(out_folder):
             os.makedirs(out_folder)
         read_dataflow_dataset(file_path, out_folder, session, args.linking_type)
-    running_process(args.output_path)
+    # running_process(args.output_path)
